@@ -27,5 +27,6 @@ export default defineNuxtConfig({
     "!interfaces": resolve(__dirname, "./interfaces")
   },
   modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
-  buildModules: ["@nuxtjs/pwa"]
+  buildModules: ["@nuxtjs/pwa"],
+  target: "static"
 });

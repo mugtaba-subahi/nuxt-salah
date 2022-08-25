@@ -27,14 +27,18 @@ export default defineNuxtConfig({
     "!interfaces": resolve(__dirname, "./interfaces")
   },
   modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
-  // buildModules: ["@nuxtjs/pwa"],
-  target: "static",
+  buildModules: ["@nuxtjs/pwa"],
   pwa: {
-    enabled: true,
-    autoRegister: true,
-    workbox: {
-      enabled: true,
-      autoRegister: true
+    icon: {
+      iconSrc: "./public/icon.png"
+    },
+    manifest: {
+      lang: "en",
+      short_name: "P",
+      name: "Projectx",
+      start_url: "/",
+      display: "standalone",
+      theme_color: "#00b5ad"
     }
   }
 });

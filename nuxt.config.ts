@@ -26,8 +26,8 @@ export default defineNuxtConfig({
     "!assets": resolve(__dirname, "./assets"),
     "!interfaces": resolve(__dirname, "./interfaces")
   },
-  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
-  buildModules: ["@nuxtjs/pwa"],
+  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@nuxtjs/pwa"],
+  // buildModules: ["@nuxtjs/pwa"],
   pwa: {
     icon: {
       iconSrc: "./public/icon.png"

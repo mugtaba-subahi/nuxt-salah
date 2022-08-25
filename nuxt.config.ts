@@ -27,6 +27,14 @@ export default defineNuxtConfig({
     "!interfaces": resolve(__dirname, "./interfaces")
   },
   modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
-  buildModules: ["@nuxtjs/pwa"],
-  target: "static"
+  // buildModules: ["@nuxtjs/pwa"],
+  target: "static",
+  pwa: {
+    enabled: true,
+    autoRegister: true,
+    workbox: {
+      enabled: true,
+      autoRegister: true
+    }
+  }
 });

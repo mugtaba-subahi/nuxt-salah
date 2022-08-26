@@ -25,8 +25,8 @@ export default defineNuxtConfig({
     "!interfaces": resolve(__dirname, "./interfaces")
   },
 
-  modules: ["@pinia/nuxt", "@nuxtjs/pwa"],
-  buildModules: ["@nuxtjs/google-fonts", "@nuxtjs/tailwindcss"],
+  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
+  buildModules: ["@nuxtjs/google-fonts", "@nuxtjs/pwa"],
 
   pwa: {
     meta: {

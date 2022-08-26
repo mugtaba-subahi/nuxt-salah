@@ -16,6 +16,7 @@
     "tiny-timer": "^1.6.0"
   },
   "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.0.0-0",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/tailwindcss": "^5.3.2",
     "nuxt": "3.0.0-rc.8"

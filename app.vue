@@ -24,7 +24,6 @@ isLoading.value = false;
 </script>
 
 <style lang="postcss">
-@import url("https://fonts.googleapis.com/css?family=Roboto:400&display=swap");
 @tailwind base;
 
 html,

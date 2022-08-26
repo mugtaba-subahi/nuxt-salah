@@ -9,14 +9,12 @@ export default defineNuxtConfig({
       { charset: "utf-8" },
       { "http-equiv": "X-UA-Compatible", content: "IE=edge" },
       { name: "viewport", content: "width=device-width,initial-scale=1.0,user-scalable=no" },
-      { rel: "apple-touch-icon", sizes: "180x180", href: "/img/icons/icon-180x180.png" },
-      {
-        rel: "stylesheet",
-        href: "httpshttps://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap&display=swap"
-      }
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/img/icons/icon-180x180.png" }
     ]
   },
+
   components: true,
+
   alias: {
     "!store": resolve(__dirname, "./store"),
     "!api": resolve(__dirname, "./api"),
@@ -26,6 +24,31 @@ export default defineNuxtConfig({
     "!assets": resolve(__dirname, "./assets"),
     "!interfaces": resolve(__dirname, "./interfaces")
   },
+
   modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
-  buildModules: ["@nuxtjs/pwa"]
+
+  buildModules: ["@nuxtjs/pwa", "@nuxtjs/google-fonts"],
+
+  pwa: {
+    meta: {
+      title: "Salah1x-title",
+      author: "Salah1x-author"
+    },
+    manifest: {
+      name: "Salah",
+      short_name: "Salah",
+      theme_color: "#031b4b",
+      background_color: "#311473",
+      display: "fullscreen",
+      orientation: "portrait",
+      Scope: "/",
+      splash_pages: null
+    }
+  },
+
+  googleFonts: {
+    families: {
+      Roboto: [400]
+    }
+  }
 });

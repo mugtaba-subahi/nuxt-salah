@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import LondonPrayerTimesApi from "!api/LondonPrayerTimesApi/api";
 import PrayerTimesController from "!controllers/PrayerTimesController/controller";
 import TimerController from "!controllers/TimerController/controller";
@@ -13,6 +12,13 @@ import Store from "!store";
 
 const store = Store();
 let isLoading = ref(true);
+
+console.log("OMG");
+const result = await useFetch(`https://www.londonprayertimes.com/api/times?format=json&key=2a99f189-6e3b-4015-8fb8-ff277642561d`);
+
+// @ts-ignore
+store.apiResult = result;
+console.log("🚀 > file: app.vue > line 19 > result", result);
 
 const londonPrayerTimesApi = new LondonPrayerTimesApi();
 const prayerController = new PrayerTimesController(londonPrayerTimesApi);

@@ -31,7 +31,9 @@ export default defineNuxtConfig({
   pwa: {
     meta: {
       title: "Salah1x-title",
-      author: "Salah1x-author"
+      author: "Salah1x-author",
+      mobileAppIOS: false,
+      appleStatusBarStyle: "black-translucent"
     },
     manifest: {
       name: "Salah",
@@ -41,6 +43,7 @@ export default defineNuxtConfig({
       display: "fullscreen",
       orientation: "portrait",
       Scope: "/",
+      start_url: "/index.html",
       splash_pages: null
     }
   },

@@ -45,6 +45,9 @@ export default defineNuxtConfig({
       Scope: "/",
       start_url: "/index.html",
       splash_pages: null
+    },
+    icon: {
+      sizes: [64, 120, 144, 152, 192, 384]
     }
   },
 

@@ -1,4 +1,4 @@
-export interface IApi {
+export interface ILondonPrayerTimesApi {
   city: string;
   date: string;
   fajr: string;

@@ -1,14 +1,21 @@
 <template>
   <div class="timer">
-    <p class="timer__item" v-if="store.nextPrayerIndex !== -1">{{ store.prayers[store.nextPrayerIndex].english }} in</p>
-    <p class="timer__item timer--time" v-if="store.nextPrayerIndex !== -1">{{ store.nextPrayerTimeLeft }}</p>
-    <p class="timer__item" v-else>All prayers passed</p>
+    <template v-if="!allPassed">
+      <p class="timer__item">{{ nextPrayerEnglish }} in</p>
+      <p class="timer__item timer--time">{{ timeLeft }}</p>
+    </template>
+    <template v-else>
+      <p class="timer__item">All prayers passed</p>
+    </template>
   </div>
 </template>
 
 <script lang="ts" setup>
-import Store from "!store";
-const store = Store();
+defineProps({
+  allPassed: { type: Boolean, required: true },
+  nextPrayerEnglish: { type: String, required: true },
+  timeLeft: { type: String, required: true }
+});
 </script>
 
 <style lang="postcss" scoped>

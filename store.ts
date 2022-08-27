@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
-import { IApi } from "~~/api/LondonPrayerTimesApi/interfaces";
-import { IPrayer } from "~~/controllers/PrayerTimesController/interfaces";
+import { ILondonPrayerTimesApi } from "!api/LondonPrayerTimes/interfaces";
+import { IPrayer } from "!interfaces";
 
-export default defineStore("store", {
+export const useStore = defineStore("store", {
   state: () => ({
-    apiResult: {} as IApi,
+    apiResult: {} as ILondonPrayerTimesApi,
     prayers: [] as IPrayer[],
     nextPrayerIndex: -1,
     nextPrayerTimeLeft: "..."

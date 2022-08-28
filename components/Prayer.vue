@@ -7,13 +7,15 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
-  english: { type: String, required: true },
-  time: { type: String, required: true },
-  arabic: { type: String, required: true },
-  passed: { type: Boolean, required: true },
-  isNext: { type: Boolean, required: true }
-});
+interface IPrayerProps {
+  english: string;
+  time: string;
+  arabic: string;
+  passed: boolean;
+  isNext: boolean;
+}
+
+const { english, time, arabic, passed, isNext } = defineProps<IPrayerProps>();
 </script>
 
 <style lang="postcss" scoped>

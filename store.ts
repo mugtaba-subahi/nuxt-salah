@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ILondonPrayerTimesApi } from "!api/LondonPrayerTimes/interfaces";
-import { IPrayer } from "!interfaces";
+import { IPrayer, IPrayerNullable } from "!interfaces";
 
 export const useStore = defineStore("store", {
   state: () => ({

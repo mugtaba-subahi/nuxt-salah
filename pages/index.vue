@@ -1,14 +1,34 @@
 <template>
-  <p>looolxe</p>
+  <div>
+    <Timer :nextPrayer="store.prayers[store.nextPrayerIndex]" :timeLeft="store.nextPrayerTimeLeft" />
+    <Heading class="heading" />
+    <Prayer v-for="(prayer, i) in store.prayers" :key="i" v-bind="prayer" />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { useStore } from "../store";
-import PrayerTimesController from "../controllers/PrayerTimes";
+import { useStore } from "!store";
+import LondonPrayerTimesController from "!controllers/LondonPrayerTimes";
+import TimerController from "!controllers/Timer";
+import { storeToRefs } from "pinia";
+import { prayerNamesEnglish } from "@/readonly";
 
 const store = useStore();
+const { nextPrayerIndex } = storeToRefs(store);
 
-const prayerTimesController = new PrayerTimesController();
+const LondonCon = new LondonPrayerTimesController(store);
+
+await LondonCon.buildPrayerTimes();
+
+const timer = new TimerController(store, LondonCon);
+store.nextPrayerIndex = store.prayers.findIndex((prayer: any) => !prayer.passed);
+
+timer.start();
+
+watch(nextPrayerIndex, (nextPrayerIndex) => {
+  if (nextPrayerIndex < 0 || nextPrayerIndex > prayerNamesEnglish.length - 1) return;
+  timer.start();
+});
 </script>
 
 <style lang="postcss">

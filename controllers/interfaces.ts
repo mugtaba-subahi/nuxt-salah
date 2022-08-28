@@ -1,4 +1,4 @@
-import { IPrayer, IPrayerNullable } from "!interfaces";
+import { IPrayer, IPrayerNullable } from "~~/interfaces";
 
 export interface IBaseController {
   // get nextPrayerIndex(): number;

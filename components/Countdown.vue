@@ -11,12 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import { IPrayerNullable } from "!interfaces";
+import { IPrayerNullable } from "~~/interfaces";
 
-interface ITimerProps {
-  nextPrayer: IPrayerNullable;
-  timeLeft: string;
-}
+
 
 const { nextPrayer, timeLeft } = defineProps<ITimerProps>();
 </script>

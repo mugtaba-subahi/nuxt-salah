@@ -7,7 +7,12 @@
 </template>
 
 <script lang="ts" setup>
-import { default as date } from "!utils/getDate";
+const date = new Date().toLocaleString("en-GB", {
+  weekday: "short",
+  year: "numeric",
+  month: "short",
+  day: "numeric"
+});
 </script>
 
 <style lang="postcss" scoped>

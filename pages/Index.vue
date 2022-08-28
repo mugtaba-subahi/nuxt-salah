@@ -1,13 +1,13 @@
 <template>
   <div>
     <Timer :nextPrayer="store.prayers[store.nextPrayerIndex]" :timeLeft="store.nextPrayerTimeLeft" />
-    <Heading class="heading" />
+    <Heading class="heading" v-once />
     <Prayer v-for="(prayer, i) in store.prayers" :key="i" v-bind="prayer" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useStore } from "!store";
+import { useStore } from "~~/stores";
 import LondonPrayerTimesController from "!controllers/LondonPrayerTimes";
 import TimerController from "!controllers/Timer";
 import { storeToRefs } from "pinia";

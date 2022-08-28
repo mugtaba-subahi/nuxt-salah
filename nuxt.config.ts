@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     "!store": resolve(__dirname, "./store"),
     "!interfaces": resolve(__dirname, "./interfaces"),
     "!config": resolve(__dirname, "./config"),
+    "!global": resolve(__dirname, "./global"),
     "!api": resolve(__dirname, "./api"),
     "!components": resolve(__dirname, "./components"),
     "!controllers": resolve(__dirname, "./controllers"),

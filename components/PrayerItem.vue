@@ -1,21 +1,15 @@
 <template>
-  <div class="prayer" :class="{ passed: passed, isNext: isNext }">
-    <p class="prayer__item prayer__item--english">{{ english }}</p>
-    <p class="prayer__item prayer__item--time">{{ time }}</p>
-    <p class="prayer__item prayer__item--arabic">{{ arabic }}</p>
+  <div class="prayer" :class="{ passed: props.passed, isNext: props.isNext }">
+    <p class="prayer__item prayer__item--english">{{ props.english }}</p>
+    <p class="prayer__item prayer__item--time">{{ props.time }}</p>
+    <p class="prayer__item prayer__item--arabic">{{ props.arabic }}</p>
   </div>
 </template>
 
 <script lang="ts" setup>
-interface IPrayerProps {
-  english: string;
-  time: string;
-  arabic: string;
-  passed: boolean;
-  isNext: boolean;
-}
+import { IPrayerItem } from "~~/interfaces";
 
-const { english, time, arabic, passed, isNext } = defineProps<IPrayerProps>();
+const props = defineProps<IPrayerItem>();
 </script>
 
 <style lang="postcss" scoped>

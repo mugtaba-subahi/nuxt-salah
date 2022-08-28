@@ -1,7 +1,7 @@
 import { prayerNamesArabic, prayerNamesEnglish } from "~~/readonly";
 import convert12To24hr from "!utils/convert12To24hr";
 import convert24hrToMillisecond from "!utils/convert24hrToMillisecond";
-import { IPrayer } from "!interfaces";
+import { IPrayer } from "~~/interfaces";
 // import { ILondonPrayerTimesApi } from "!api/LondonPrayerTimes/interfaces";
 // import LondonPrayerTimeApi from "!api/LondonPrayerTimes/api";
 import { IBaseController } from "./interfaces";

@@ -18,7 +18,6 @@ const timerStore = useTimerStore();
 
 const apiResult = await Api.get();
 
-// @ts-ignore
 // initial load
 prayerStore.prayers = PrayerController.processApiResult(apiResult);
 prayerStore.prayers = PrayerController.processNextPrayer(prayerStore.prayers);

@@ -11,7 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue";
 import { IPrayerItem } from "!stores/prayers";
 
 export interface Timer {

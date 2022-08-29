@@ -13,8 +13,7 @@ export class TimerController {
     this.store = store;
   }
 
-  public start = (prayersList: PrayerItem[]): void => {
-    const nextPrayerIndex = PrayerController.nextPrayerIndex(prayersList);
+  public start = (prayersList: PrayerItem[], nextPrayerIndex: number): void => {
     if (nextPrayerIndex === -1) return;
 
     const nextPrayerTime = TimerController.convert24hrToMillisecond(prayersList[nextPrayerIndex].time);

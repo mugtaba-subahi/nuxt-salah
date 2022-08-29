@@ -28,38 +28,8 @@ export default defineNuxtConfig({
     "!assets": resolve(__dirname, "./assets")
   },
 
-  // modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
-  // buildModules: ["@nuxtjs/google-fonts", "@nuxtjs/pwa"],
-
-  //
-  //
-  //
-  //
-
-  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@nuxtjs/pwa"],
-  buildModules: ["@nuxtjs/google-fonts"],
-
-  manifest: {
-    name: "Salah",
-    short_name: "Salah",
-    theme_color: "#031b4b",
-    background_color: "#311473",
-    display: "fullscreen",
-    orientation: "portrait",
-    Scope: "/",
-    start_url: "/index.html",
-    splash_pages: null
-  },
-  workbox: {
-    dev: true,
-    debug: true
-  },
-
-  //
-  //
-  //
-  //
-  //
+  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
+  buildModules: ["@nuxtjs/google-fonts", "@nuxtjs/pwa"],
 
   pwa: {
     meta: {

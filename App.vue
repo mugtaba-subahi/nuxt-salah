@@ -2,7 +2,9 @@
   <div>
     <Timer :nextPrayer="prayerStore.prayers[prayerStore.nextPrayerIndex] || null" :timeLeft="timerStore.nextPrayerTimeLeft" />
     <TheDate class="heading" v-once />
-    <Prayer v-for="(prayer, i) in prayerStore.prayers" :key="i" :prayer="prayer" />
+    <template v-if="prayerStore.prayers.length">
+      <Prayer v-for="(prayer, i) in prayerStore.prayers" :key="i" :prayer="prayer" />
+    </template>
   </div>
 </template>
 
@@ -15,30 +17,25 @@ import { storeToRefs } from "pinia";
 
 const prayerStore = usePrayerStore();
 const timerStore = useTimerStore();
+const { finished } = storeToRefs(timerStore);
 
 const apiResult = await Api.get();
 
-// @ts-ignore
-// initial load
-prayerStore.prayers = PrayerController.processApiResult(apiResult);
-prayerStore.prayers = PrayerController.processNextPrayer(prayerStore.prayers);
-prayerStore.nextPrayerIndex = PrayerController.nextPrayerIndex(prayerStore.prayers);
+const PrayerCon = new PrayerController(prayerStore);
+PrayerCon.setApiResult(apiResult);
+PrayerCon.setNextPrayer();
 
-// begin timer
-const Counter = new TimerController(timerStore);
-Counter.start(prayerStore.prayers);
+const TimerCon = new TimerController(timerStore);
+TimerCon.start(prayerStore.prayers, prayerStore.nextPrayerIndex);
 
 // watchers
-const { finished } = storeToRefs(timerStore);
 watch(finished, (isFinished) => {
   if (!isFinished) return;
 
-  prayerStore.prayers = PrayerController.processPreviousPrayer(prayerStore.prayers);
-  prayerStore.prayers = PrayerController.processNextPrayer(prayerStore.prayers);
-  prayerStore.nextPrayerIndex = PrayerController.nextPrayerIndex(prayerStore.prayers);
+  PrayerCon.setPreviousPrayer();
+  PrayerCon.setNextPrayer();
 
-  if (PrayerController.nextPrayerIndex(prayerStore.prayers) === -1) return;
-  Counter.start(prayerStore.prayers);
+  TimerCon.start(prayerStore.prayers, prayerStore.nextPrayerIndex);
 });
 </script>
 

@@ -1,12 +1,12 @@
-import { prayerNamesArabic, prayerNamesEnglish } from "!globals";
-import { GetPrayersApiResponse, PrayerItem } from "!interfaces";
+import { IGetPrayersApiResponse } from "!api/index";
 import { TimerController } from "!controllers/Timer";
-import { usePrayerStoreState } from "!stores";
+import { prayerNamesArabic, prayerNamesEnglish } from "!globals";
+import { IPrayerItem, IUsePrayerStoreState } from "!stores/prayers";
 
 export class PrayerController {
-  private store: usePrayerStoreState;
+  private store: IUsePrayerStoreState;
 
-  constructor(store: usePrayerStoreState) {
+  constructor(store: IUsePrayerStoreState) {
     this.store = store;
   }
 
@@ -26,8 +26,8 @@ export class PrayerController {
     this.store.prayers[this.store.nextPrayerIndex].isNext = false;
   };
 
-  public setApiResult = (apiResult: GetPrayersApiResponse): void => {
-    const prayers = prayerNamesEnglish.map((name, index): PrayerItem => {
+  public setApiResult = (apiResult: IGetPrayersApiResponse): void => {
+    const prayers = prayerNamesEnglish.map((name, index): IPrayerItem => {
       const prayer = {
         index,
         arabic: prayerNamesArabic[index],

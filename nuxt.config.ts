@@ -17,15 +17,14 @@ export default defineNuxtConfig({
   components: true,
 
   alias: {
-    "!stores": resolve(__dirname, "./stores"),
-    "!interfaces": resolve(__dirname, "./interfaces"),
-    "!config": resolve(__dirname, "./config"),
-    "!globals": resolve(__dirname, "./globals"),
     "!api": resolve(__dirname, "./api"),
-    "!components": resolve(__dirname, "./components"),
-    "!controllers": resolve(__dirname, "./controllers"),
     "!utils": resolve(__dirname, "./utils"),
-    "!assets": resolve(__dirname, "./assets")
+    "!config": resolve(__dirname, "./config"),
+    "!assets": resolve(__dirname, "./assets"),
+    "!stores": resolve(__dirname, "./stores"),
+    "!globals": resolve(__dirname, "./globals"),
+    "!components": resolve(__dirname, "./components"),
+    "!controllers": resolve(__dirname, "./controllers")
   },
 
   modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],

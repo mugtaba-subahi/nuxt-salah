@@ -12,10 +12,10 @@
 
 <script lang="ts" setup>
 import { defineProps } from "vue";
-import { PrayerItemNullable } from "!interfaces";
+import { IPrayerItem } from "!stores/prayers";
 
 export interface Timer {
-  nextPrayer: PrayerItemNullable;
+  nextPrayer: IPrayerItem | null;
   timeLeft: string;
 }
 

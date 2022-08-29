@@ -1249,9 +1249,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
-  version "1.0.30001383"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001383.tgz#aecf317ccd940690725ae3ae4f28293c5fb8050e"
-  integrity sha512-swMpEoTp5vDoGBZsYZX7L7nXHe6dsHxi9o6/LKf/f0LukVtnrxly5GVb/fWdCDTqi/yw6Km6tiJ0pmBacm0gbg==
+  version "1.0.30001384"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001384.tgz#029527c2d781a3cfef13fa63b3a78a6088e35973"
+  integrity sha512-BBWt57kqWbc0GYZXb47wTXpmAgqr5LSibPzNjk/AWMdmJMQhLqOl3c/Kd4OAU/tu4NLfYkMx8Tlq3RVBkOBolQ==
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -4885,14 +4885,14 @@ unctx@^1.1.4:
     unplugin "^0.6.1"
 
 unctx@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/unctx/-/unctx-2.0.1.tgz#f87aae922cce02499ff8d591fe33ff5e9b6123fd"
-  integrity sha512-4VkJKSG+lh1yYkvdI0Xd3Gm7y7PU6F0mG5SoJqCI1j2jtIaHvTLAdBfbhDjbHxT93BsRkzcaxaeBtu8W/mX1Sg==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/unctx/-/unctx-2.0.2.tgz#7d14d9290e0879aa7be697b7f35066cffec4ffc4"
+  integrity sha512-3lcXTlDoOaguRVC1GqG3mrawy17yoycSAQDDnUayQYZ17v9to+Gn6Zyssroc/GD2ppJ0wF5V8adOcKkrNKVWow==
   dependencies:
     acorn "^8.8.0"
     estree-walker "^3.0.1"
     magic-string "^0.26.2"
-    unplugin "^0.8.0"
+    unplugin "^0.9.5"
 
 undici@^5.2.0:
   version "5.10.0"
@@ -4965,17 +4965,7 @@ unplugin@^0.7.2:
     webpack-sources "^3.2.3"
     webpack-virtual-modules "^0.4.4"
 
-unplugin@^0.8.0:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.8.1.tgz#4517b6a8ec3d944e838f9c346921d9777cd159e1"
-  integrity sha512-o7rUZoPLG1fH4LKinWgb77gDtTE6mw/iry0Pq0Z5UPvZ9+HZ1/4+7fic7t58s8/CGkPrDpGq+RltO+DmswcR4g==
-  dependencies:
-    acorn "^8.8.0"
-    chokidar "^3.5.3"
-    webpack-sources "^3.2.3"
-    webpack-virtual-modules "^0.4.4"
-
-unplugin@^0.9.0:
+unplugin@^0.9.0, unplugin@^0.9.5:
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.9.5.tgz#2e546c044e0631e699ebd6fb521eeb7bbcb8899f"
   integrity sha512-luraheyfxwtvkvHpsOvMNv7IjLdORTWKZp0gWYNHGLi2ImON3iIZOj464qEyyEwLA/EMt12fC415HW9zRpOfTg==

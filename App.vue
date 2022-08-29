@@ -2,18 +2,18 @@
   <div>
     <Timer :nextPrayer="prayerStore.prayers[prayerStore.nextPrayerIndex] || null" :timeLeft="timerStore.nextPrayerTimeLeft" />
     <TheDate class="heading" v-once />
-    <template v-if="prayerStore.prayers.length">
-      <Prayer v-for="(prayer, i) in prayerStore.prayers" :key="i" :prayer="prayer" />
-    </template>
+    <Prayer v-for="(prayer, i) in prayerStore.prayers" :key="i" :prayer="prayer" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { usePrayerStore, useTimerStore } from "!stores";
-import * as Api from "!api";
-import { PrayerController } from "~~/controllers/Prayer";
-import { TimerController } from "~~/controllers/Timer";
 import { storeToRefs } from "pinia";
+
+import * as Api from "!api";
+import { usePrayerStore } from "!stores/prayers";
+import { useTimerStore } from "!stores/timer";
+import { PrayerController } from "!controllers/Prayer";
+import { TimerController } from "!controllers/Timer";
 
 const prayerStore = usePrayerStore();
 const timerStore = useTimerStore();

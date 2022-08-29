@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   },
 
   modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
-  buildModules: ["@nuxtjs/google-fonts", "@nuxtjs/pwa"],
+  buildModules: ["nuxt-purgecss", "@nuxtjs/google-fonts", "@nuxtjs/pwa"],
 
   pwa: {
     meta: {

@@ -9,7 +9,8 @@ export default defineNuxtConfig({
       { charset: "utf-8" },
       { "http-equiv": "X-UA-Compatible", content: "IE=edge" },
       { name: "viewport", content: "width=device-width,initial-scale=1.0,user-scalable=no" },
-      { rel: "apple-touch-icon", sizes: "180x180", href: "/img/icons/icon-180x180.png" }
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/img/icons/icon-180x180.png" },
+      { rel: "manifest", href: "/manifest.json" }
     ]
   },
 

@@ -16,10 +16,10 @@ export default defineNuxtConfig({
   components: true,
 
   alias: {
-    "!store": resolve(__dirname, "./store"),
+    "!stores": resolve(__dirname, "./stores"),
     "!interfaces": resolve(__dirname, "./interfaces"),
     "!config": resolve(__dirname, "./config"),
-    "!global": resolve(__dirname, "./global"),
+    "!globals": resolve(__dirname, "./globals"),
     "!api": resolve(__dirname, "./api"),
     "!components": resolve(__dirname, "./components"),
     "!controllers": resolve(__dirname, "./controllers"),

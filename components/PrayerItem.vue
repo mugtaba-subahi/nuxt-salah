@@ -1,14 +1,16 @@
 <template>
-  <div class="prayer" :class="{ passed: props.passed, isNext: props.isNext }">
-    <p class="prayer__item prayer__item--english">{{ props.english }}</p>
-    <p class="prayer__item prayer__item--time">{{ props.time }}</p>
-    <p class="prayer__item prayer__item--arabic">{{ props.arabic }}</p>
+  <div class="prayer" :class="{ passed: prayer.passed, isNext: prayer.isNext }">
+    <p class="prayer__item prayer__item--english">{{ prayer.english }}</p>
+    <p class="prayer__item prayer__item--time">{{ prayer.time }}</p>
+    <p class="prayer__item prayer__item--arabic">{{ prayer.arabic }}</p>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { PropType } from "vue";
 import { PrayerItem } from "!interfaces";
-const props = defineProps<PrayerItem>();
+
+const { prayer } = defineProps({ prayer: Object as PropType<PrayerItem> });
 </script>
 
 <style lang="postcss" scoped>

@@ -1,4 +1,4 @@
-export interface ILondonPrayerTimesApi {
+export interface GetPrayersApiResponse {
   city: string;
   date: string;
   fajr: string;
@@ -14,3 +14,14 @@ export interface ILondonPrayerTimesApi {
   isha: string;
   isha_jamat: string;
 }
+
+export interface PrayerItem {
+  english: string;
+  time: string;
+  arabic: string;
+  passed: boolean;
+  isNext: boolean;
+  index: number;
+}
+
+export type PrayerItemNullable = PrayerItem | null;

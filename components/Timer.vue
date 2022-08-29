@@ -1,7 +1,7 @@
 <template>
   <div class="timer">
-    <template v-if="!allPassed">
-      <p class="timer__item">{{ nextPrayerEnglish }} in</p>
+    <template v-if="nextPrayer">
+      <p class="timer__item">{{ nextPrayer.english }} in</p>
       <p class="timer__item timer--time">{{ timeLeft }}</p>
     </template>
     <template v-else>
@@ -11,11 +11,15 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
-  allPassed: { type: Boolean, required: true },
-  nextPrayerEnglish: { type: String, required: true },
-  timeLeft: { type: String, required: true }
-});
+import { defineProps } from "vue";
+import { PrayerItemNullable } from "!interfaces";
+
+export interface Timer {
+  nextPrayer: PrayerItemNullable;
+  timeLeft: string;
+}
+
+const { nextPrayer, timeLeft } = defineProps<Timer>();
 </script>
 
 <style lang="postcss" scoped>

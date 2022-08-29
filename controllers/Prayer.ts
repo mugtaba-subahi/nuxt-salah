@@ -1,11 +1,12 @@
 import { prayerNamesArabic, prayerNamesEnglish } from "!globals";
 import { GetPrayersApiResponse, PrayerItem } from "!interfaces";
 import { TimerController } from "!controllers/Timer";
+import { usePrayerStoreState } from "!stores";
 
 export class PrayerController {
-  private store: any;
+  private store: usePrayerStoreState;
 
-  constructor(store: any) {
+  constructor(store: usePrayerStoreState) {
     this.store = store;
   }
 

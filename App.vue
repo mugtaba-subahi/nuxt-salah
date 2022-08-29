@@ -21,14 +21,16 @@ const { finished } = storeToRefs(timerStore);
 
 const apiResult = await Api.get();
 
+// handle prayers on load
 const PrayerCon = new PrayerController(prayerStore);
 PrayerCon.setApiResult(apiResult);
 PrayerCon.setNextPrayer();
 
+// handle timer on load
 const TimerCon = new TimerController(timerStore);
 TimerCon.start(prayerStore.prayers, prayerStore.nextPrayerIndex);
 
-// watchers
+// handle timer on finish
 watch(finished, (isFinished) => {
   if (!isFinished) return;
 

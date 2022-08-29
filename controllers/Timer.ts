@@ -3,13 +3,13 @@ import dayjs from "dayjs";
 import convertTime from "convert-time";
 
 import { PrayerItem } from "!interfaces";
-import { PrayerController } from "!controllers/Prayer";
+import { useTimerStoreState } from "!stores";
 
 export class TimerController {
   private _timer = new TinyTimer();
-  private store: any;
+  private store: useTimerStoreState;
 
-  constructor(store: any) {
+  constructor(store: useTimerStoreState) {
     this.store = store;
   }
 

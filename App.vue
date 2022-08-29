@@ -3,7 +3,6 @@
     <Timer :nextPrayer="prayerStore.prayers[prayerStore.nextPrayerIndex] || null" :timeLeft="timerStore.nextPrayerTimeLeft" />
     <TheDate class="heading" v-once />
     <Prayer v-for="(prayer, i) in prayerStore.prayers" :key="i" :prayer="prayer" />
-    <p>{{ new Date() }}</p>
   </div>
 </template>
 

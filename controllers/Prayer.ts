@@ -1,4 +1,4 @@
-import { IGetPrayersApiResponse } from "!api/index";
+import { IGetPrayersApiResponse } from "!api";
 import { TimerController } from "!controllers/Timer";
 import { prayerNamesArabic, prayerNamesEnglish } from "!globals";
 import { IPrayerItem, IUsePrayerStoreState } from "!stores/prayers";

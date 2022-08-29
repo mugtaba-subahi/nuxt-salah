@@ -8,9 +8,9 @@
 
 <script lang="ts" setup>
 import { PropType } from "vue";
-import { PrayerItem } from "!interfaces";
+import { IPrayerItem } from "!stores/prayers";
 
-const { prayer } = defineProps({ prayer: Object as PropType<PrayerItem> });
+const { prayer } = defineProps({ prayer: Object as PropType<IPrayerItem> });
 </script>
 
 <style lang="postcss" scoped>

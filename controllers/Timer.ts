@@ -1,20 +1,19 @@
-import TinyTimer from "tiny-timer";
 import dayjs from "dayjs";
+import TinyTimer from "tiny-timer";
 import convertTime from "convert-time";
 
-import { PrayerItem } from "!interfaces";
-import { PrayerController } from "!controllers/Prayer";
+import { IPrayerItem } from "!stores/prayers";
+import { IUseTimerStoreState } from "!stores/timer";
 
 export class TimerController {
   private _timer = new TinyTimer();
-  private store: any;
+  private store: IUseTimerStoreState;
 
-  constructor(store: any) {
+  constructor(store: IUseTimerStoreState) {
     this.store = store;
   }
 
-  public start = (prayersList: PrayerItem[]): void => {
-    const nextPrayerIndex = PrayerController.nextPrayerIndex(prayersList);
+  public start = (prayersList: IPrayerItem[], nextPrayerIndex: number): void => {
     if (nextPrayerIndex === -1) return;
 
     const nextPrayerTime = TimerController.convert24hrToMillisecond(prayersList[nextPrayerIndex].time);

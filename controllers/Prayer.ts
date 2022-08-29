@@ -1,38 +1,33 @@
-import clone from "lodash.clonedeep";
-import { prayerNamesArabic, prayerNamesEnglish } from "!globals";
-import { GetPrayersApiResponse, PrayerItem } from "!interfaces";
+import { IGetPrayersApiResponse } from "!api/index";
 import { TimerController } from "!controllers/Timer";
+import { prayerNamesArabic, prayerNamesEnglish } from "!globals";
+import { IPrayerItem, IUsePrayerStoreState } from "!stores/prayers";
 
 export class PrayerController {
-  public static nextPrayerIndex = (prayersList: PrayerItem[]): number => {
-    return prayersList.findIndex((prayer) => !prayer.passed);
+  private store: IUsePrayerStoreState;
+
+  constructor(store: IUsePrayerStoreState) {
+    this.store = store;
+  }
+
+  public setNextPrayer = (): void => {
+    const nextPrayerIndex = this.store.prayers.findIndex((prayer) => !prayer.passed);
+    this.store.nextPrayerIndex = nextPrayerIndex;
+
+    if (nextPrayerIndex === -1) return;
+    this.store.prayers[nextPrayerIndex].isNext = true;
   };
 
-  public static processNextPrayer = (prayersList: PrayerItem[]): PrayerItem[] => {
-    const prayers = clone(prayersList) as PrayerItem[];
-    const nextPrayerIndex = prayers.findIndex((prayer) => !prayer.passed);
+  public setPreviousPrayer = (): void => {
+    const nextPrayerIndex = this.store.prayers.findIndex((prayer) => !prayer.passed);
+    if (nextPrayerIndex === -1) return;
 
-    if (nextPrayerIndex === -1) return prayers;
-
-    prayers[nextPrayerIndex].isNext = true;
-
-    return prayers;
+    this.store.prayers[this.store.nextPrayerIndex].passed = true;
+    this.store.prayers[this.store.nextPrayerIndex].isNext = false;
   };
 
-  public static processPreviousPrayer = (prayersList: PrayerItem[]): PrayerItem[] => {
-    const prayers = clone(prayersList) as PrayerItem[];
-    const nextPrayerIndex = prayers.findIndex((prayer) => !prayer.passed);
-
-    if (nextPrayerIndex === -1) return prayers;
-
-    prayers[nextPrayerIndex].passed = true;
-    prayers[nextPrayerIndex].isNext = false;
-
-    return prayers;
-  };
-
-  public static processApiResult = (apiResult: GetPrayersApiResponse): PrayerItem[] => {
-    const prayers = prayerNamesEnglish.map((name, index): PrayerItem => {
+  public setApiResult = (apiResult: IGetPrayersApiResponse): void => {
+    const prayers = prayerNamesEnglish.map((name, index): IPrayerItem => {
       const prayer = {
         index,
         arabic: prayerNamesArabic[index],
@@ -52,6 +47,6 @@ export class PrayerController {
       return prayer;
     });
 
-    return prayers;
+    this.store.prayers = prayers;
   };
 }

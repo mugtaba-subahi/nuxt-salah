@@ -7,38 +7,37 @@
 </template>
 
 <script lang="ts" setup>
-import { usePrayerStore, useTimerStore } from "!stores";
-import * as Api from "!api";
-import { PrayerController } from "~~/controllers/Prayer";
-import { TimerController } from "~~/controllers/Timer";
 import { storeToRefs } from "pinia";
+
+import * as Api from "!api";
+import { usePrayerStore } from "!stores/prayers";
+import { useTimerStore } from "!stores/timer";
+import { PrayerController } from "!controllers/Prayer";
+import { TimerController } from "!controllers/Timer";
 
 const prayerStore = usePrayerStore();
 const timerStore = useTimerStore();
+const { finished } = storeToRefs(timerStore);
 
 const apiResult = await Api.get();
 
-// @ts-ignore
-// initial load
-prayerStore.prayers = PrayerController.processApiResult(apiResult);
-prayerStore.prayers = PrayerController.processNextPrayer(prayerStore.prayers);
-prayerStore.nextPrayerIndex = PrayerController.nextPrayerIndex(prayerStore.prayers);
+// handle prayers on load
+const PrayerCon = new PrayerController(prayerStore);
+PrayerCon.setApiResult(apiResult);
+PrayerCon.setNextPrayer();
 
-// begin timer
-const Counter = new TimerController(timerStore);
-Counter.start(prayerStore.prayers);
+// handle timer on load
+const TimerCon = new TimerController(timerStore);
+TimerCon.start(prayerStore.prayers, prayerStore.nextPrayerIndex);
 
-// watchers
-const { finished } = storeToRefs(timerStore);
+// handle timer on finish
 watch(finished, (isFinished) => {
   if (!isFinished) return;
 
-  prayerStore.prayers = PrayerController.processPreviousPrayer(prayerStore.prayers);
-  prayerStore.prayers = PrayerController.processNextPrayer(prayerStore.prayers);
-  prayerStore.nextPrayerIndex = PrayerController.nextPrayerIndex(prayerStore.prayers);
+  PrayerCon.setPreviousPrayer();
+  PrayerCon.setNextPrayer();
 
-  if (PrayerController.nextPrayerIndex(prayerStore.prayers) === -1) return;
-  Counter.start(prayerStore.prayers);
+  TimerCon.start(prayerStore.prayers, prayerStore.nextPrayerIndex);
 });
 </script>
 

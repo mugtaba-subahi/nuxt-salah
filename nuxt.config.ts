@@ -17,49 +17,18 @@ export default defineNuxtConfig({
   components: true,
 
   alias: {
-    "!stores": resolve(__dirname, "./stores"),
-    "!interfaces": resolve(__dirname, "./interfaces"),
-    "!config": resolve(__dirname, "./config"),
-    "!globals": resolve(__dirname, "./globals"),
     "!api": resolve(__dirname, "./api"),
-    "!components": resolve(__dirname, "./components"),
-    "!controllers": resolve(__dirname, "./controllers"),
     "!utils": resolve(__dirname, "./utils"),
-    "!assets": resolve(__dirname, "./assets")
+    "!config": resolve(__dirname, "./config"),
+    "!assets": resolve(__dirname, "./assets"),
+    "!stores": resolve(__dirname, "./stores"),
+    "!globals": resolve(__dirname, "./globals"),
+    "!components": resolve(__dirname, "./components"),
+    "!controllers": resolve(__dirname, "./controllers")
   },
 
-  // modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
-  // buildModules: ["@nuxtjs/google-fonts", "@nuxtjs/pwa"],
-
-  //
-  //
-  //
-  //
-
-  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@nuxtjs/pwa"],
-  buildModules: ["@nuxtjs/google-fonts"],
-
-  manifest: {
-    name: "Salah",
-    short_name: "Salah",
-    theme_color: "#031b4b",
-    background_color: "#311473",
-    display: "fullscreen",
-    orientation: "portrait",
-    Scope: "/",
-    start_url: "/index.html",
-    splash_pages: null
-  },
-  workbox: {
-    dev: true,
-    debug: true
-  },
-
-  //
-  //
-  //
-  //
-  //
+  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
+  buildModules: ["@nuxtjs/google-fonts", "@nuxtjs/pwa"],
 
   pwa: {
     meta: {

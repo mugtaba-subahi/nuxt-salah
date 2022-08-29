@@ -8,6 +8,7 @@
     "build:preview": "nuxt build && nuxt preview"
   },
   "dependencies": {
+    "@nuxtjs/robots": "^2.5.0",
     "@pinia/nuxt": "^0.4.1",
     "@vue/composition-api": "^1.7.0",
     "convert-time": "^0.3.0",

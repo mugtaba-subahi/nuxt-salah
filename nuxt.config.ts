@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     "!controllers": resolve(__dirname, "./controllers")
   },
 
-  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
+  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@nuxtjs/robots"],
   buildModules: ["nuxt-purgecss", "@nuxtjs/google-fonts", "@nuxtjs/pwa"],
 
   pwa: {

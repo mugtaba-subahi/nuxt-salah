@@ -1,59 +1,45 @@
 <template>
   <div>
-    <!-- <Timer :nextPrayer="store.prayers[store.nextPrayerIndex]" :timeLeft="store.nextPrayerTimeLeft" /> -->
+    <Timer :nextPrayer="prayerStore.prayers[prayerStore.nextPrayerIndex] || null" :timeLeft="timerStore.nextPrayerTimeLeft" />
     <TheDate class="heading" v-once />
-    <PrayerItem v-for="(prayer, i) in store.prayers" :key="i" :prayer="prayer" />
+    <Prayer v-for="(prayer, i) in prayerStore.prayers" :key="i" :prayer="prayer" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useStore } from "!stores";
+import { usePrayerStore, useTimerStore } from "!stores";
 import * as Api from "!api";
-import { PrayersController } from "~~/controllers/Prayers";
+import { PrayerController } from "~~/controllers/Prayer";
+import { TimerController } from "~~/controllers/Timer";
+import { storeToRefs } from "pinia";
 
-const store = useStore();
+const prayerStore = usePrayerStore();
+const timerStore = useTimerStore();
 
-// const apiResult = await Api.get();
-const apiResult = {
-  fajr: "02:40",
-  sunrise: "02:41"
-};
+const apiResult = await Api.get();
 
 // @ts-ignore
-const PrayersCon = new PrayersController(apiResult);
-const prayers = PrayersCon.processData();
+// initial load
+prayerStore.prayers = PrayerController.processApiResult(apiResult);
+prayerStore.prayers = PrayerController.processNextPrayer(prayerStore.prayers);
+prayerStore.nextPrayerIndex = PrayerController.nextPrayerIndex(prayerStore.prayers);
 
-store.prayers = prayers;
+// begin timer
+const Counter = new TimerController(timerStore);
+Counter.start(prayerStore.prayers);
 
-//
-//
-//
-//
-//
-//
-// import { storeToRefs } from "pinia";
-// import { useStore } from "!store";
-// import LondonPrayerTimesController from "~~/controllers/PrayerList";
-// import TimerController from "!controllers/Timer";
-// import { prayerNamesEnglish } from "!global";
+// watchers
+const { finished } = storeToRefs(timerStore);
+watch(finished, (isFinished) => {
+  if (!isFinished) return;
 
-// const store = useStore();
+  prayerStore.prayers = PrayerController.processPreviousPrayer(prayerStore.prayers);
+  prayerStore.prayers = PrayerController.processNextPrayer(prayerStore.prayers);
+  prayerStore.nextPrayerIndex = PrayerController.nextPrayerIndex(prayerStore.prayers);
 
-// const { nextPrayerIndex } = storeToRefs(store);
-
-// const LondonCon = new LondonPrayerTimesController(store);
-
-// await LondonCon.buildPrayerTimes();
-
-// const timer = new TimerController(store, LondonCon);
-// store.nextPrayerIndex = store.prayers.findIndex((prayer: any) => !prayer.passed);
-
-// timer.start();
-
-// watch(nextPrayerIndex, (nextPrayerIndex) => {
-//   if (nextPrayerIndex < 0 || nextPrayerIndex > prayerNamesEnglish.length - 1) return;
-//   timer.start();
-// });
+  if (PrayerController.nextPrayerIndex(prayerStore.prayers) === -1) return;
+  Counter.start(prayerStore.prayers);
+});
 </script>
 
 <style lang="postcss">

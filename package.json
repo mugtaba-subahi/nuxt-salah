@@ -12,6 +12,7 @@
     "@vue/composition-api": "^1.7.0",
     "convert-time": "^0.3.0",
     "dayjs": "^1.11.5",
+    "lodash.clonedeep": "^4.5.0",
     "pinia": "^2.0.20",
     "tiny-timer": "^1.6.0"
   },

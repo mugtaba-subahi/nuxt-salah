@@ -1,27 +1,26 @@
 import TinyTimer from "tiny-timer";
 import dayjs from "dayjs";
-import convert24hrToMillisecond from "!utils/convert24hrToMillisecond";
-import timeLeft from "!utils/timeLeft";
-import { IBaseController } from "./interfaces";
-import { IPrayer, IPrayerNullable } from "~~/interfaces";
-import { prayerNamesEnglish } from "@/readonly";
+import convertTime from "convert-time";
 
-class TimerController {
+import { PrayerItem } from "!interfaces";
+import { PrayerController } from "!controllers/Prayer";
+
+export class TimerController {
   private _timer = new TinyTimer();
   private store: any;
-  private prayerController: IBaseController;
 
-  constructor(Store: any, PrayerController: IBaseController) {
-    this.store = Store;
-    this.prayerController = PrayerController;
+  constructor(store: any) {
+    this.store = store;
   }
 
-  public start = (): void => {
-    const isComplete = this.store.nextPrayerIndex < 0 || this.store.nextPrayerIndex > prayerNamesEnglish.length - 1;
-    if (isComplete) return;
+  public start = (prayersList: PrayerItem[]): void => {
+    const nextPrayerIndex = PrayerController.nextPrayerIndex(prayersList);
+    if (nextPrayerIndex === -1) return;
 
-    const nextPrayerTime = convert24hrToMillisecond(this.store.prayers[this.store.nextPrayerIndex].time);
-    const remainder = timeLeft(nextPrayerTime);
+    const nextPrayerTime = TimerController.convert24hrToMillisecond(prayersList[nextPrayerIndex].time);
+    const remainder = nextPrayerTime - new Date().getTime();
+
+    this.store.finished = false;
 
     this._timer.start(remainder);
     this._timer.on("tick", this._onTick);
@@ -34,16 +33,46 @@ class TimerController {
   };
 
   private _onDone = (): void => {
-    if (this.store.nextPrayerIndex < 0 || this.store.nextPrayerIndex > prayerNamesEnglish.length - 1) return;
+    this.store.finished = true;
+  };
 
-    // handle previous prayer
-    this.store.prayers[this.store.nextPrayerIndex].passed = true;
-    this.store.prayers[this.store.nextPrayerIndex].isNext = false;
+  // Utils
+  private static validateTime = (time: string): boolean => {
+    const militaryTimeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
-    // handle next prayer
-    this.store.nextPrayerIndex++;
-    this.store.nextPrayerIndex = this.store.prayers.findIndex((prayer: any) => !prayer.passed);
+    if (typeof time !== "string") return false;
+    else if (!time.match(militaryTimeRegex)) return false;
+    else return true;
+  };
+
+  public static convert12To24hr = (name: string, time: string): string => {
+    const isValidTime: boolean = TimerController.validateTime(time);
+    if (!isValidTime) throw { error: true, message: "Invalid time" };
+
+    if (name === "Dhuhr") {
+      const [dhuhr_hour] = time.split(":");
+
+      // check if dhuhr is in afternoon or morning. 5(pm)
+      if (+dhuhr_hour < 5) return convertTime(`${time} PM`, "hh:MM");
+    }
+
+    const pmPrayers: string[] = ["Asr", "Magrib", "Isha"];
+    if (pmPrayers.indexOf(name) !== -1) return convertTime(`${time} PM`, "hh:MM");
+
+    return time;
+  };
+
+  public static convert24hrToMillisecond = (time: string): number => {
+    const isValidTime: boolean = TimerController.validateTime(time);
+    if (!isValidTime) throw { error: true, message: "Invalid time" };
+
+    const [hour, minute] = time.split(":");
+
+    const now = new Date();
+    now.setHours(+hour);
+    now.setMinutes(+minute);
+    now.setSeconds(0);
+
+    return now.getTime();
   };
 }
-
-export default TimerController;

@@ -24,9 +24,4 @@ export interface PrayerItem {
   index: number;
 }
 
-export interface CountDown {
-  nextPrayer: PrayerItemNullable;
-  timeLeft: string;
-}
-
 export type PrayerItemNullable = PrayerItem | null;

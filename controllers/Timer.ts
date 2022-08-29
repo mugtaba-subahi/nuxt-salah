@@ -27,7 +27,15 @@ export class TimerController {
   };
 
   private _onTick = (tick: number): void => {
-    const timeLeft = dayjs("2000-01-01 00:00:00").add(tick, "ms").format("H[h] m[min] s[s]");
+    const current = dayjs("2000-01-01 00:00:00").add(tick, "ms").format("HH mm ss");
+    const [hour, minute] = current.split(" ");
+
+    let format = [""];
+    hour !== "00" && format.push("H[h]");
+    minute !== "00" && format.push("m[m]");
+    format.push("s[s]");
+
+    const timeLeft = dayjs("2000-01-01 00:00:00").add(tick, "ms").format(format.join(" "));
     this.store.nextPrayerTimeLeft = timeLeft;
   };
 

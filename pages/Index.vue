@@ -7,11 +7,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from "~~/stores";
+import { storeToRefs } from "pinia";
+import { useStore } from "!store";
 import LondonPrayerTimesController from "!controllers/LondonPrayerTimes";
 import TimerController from "!controllers/Timer";
-import { storeToRefs } from "pinia";
-import { prayerNamesEnglish } from "@/readonly";
+import { prayerNamesEnglish } from "!global";
 
 const store = useStore();
 const { nextPrayerIndex } = storeToRefs(store);

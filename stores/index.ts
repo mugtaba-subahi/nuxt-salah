@@ -1,10 +1,9 @@
 import { defineStore } from "pinia";
-import { PrayerItem } from "!interfaces";
-import { GetPrayersReponse } from "!api";
+import { GetPrayersApiResponse, PrayerItem } from "!interfaces";
 
 export const useStore = defineStore("store", {
   state: () => ({
-    apiResult: {} as GetPrayersReponse,
+    apiResult: {} as GetPrayersApiResponse,
     prayers: [] as PrayerItem[],
     nextPrayerIndex: -1,
     nextPrayerTimeLeft: "..."

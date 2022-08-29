@@ -1,4 +1,20 @@
-// Modules
+export interface GetPrayersApiResponse {
+  city: string;
+  date: string;
+  fajr: string;
+  fajr_jamat: string;
+  sunrise: string;
+  dhuhr: string;
+  dhuhr_jamat: string;
+  asr: string;
+  asr_2: string;
+  asr_jamat: string;
+  magrib: string;
+  magrib_jamat: string;
+  isha: string;
+  isha_jamat: string;
+}
+
 export interface PrayerItem {
   english: string;
   time: string;
@@ -8,10 +24,9 @@ export interface PrayerItem {
   index: number;
 }
 
-export interface CountDownProps {
+export interface CountDown {
   nextPrayer: PrayerItemNullable;
   timeLeft: string;
 }
 
-// Types
 export type PrayerItemNullable = PrayerItem | null;

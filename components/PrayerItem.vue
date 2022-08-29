@@ -7,9 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-import { IPrayerItem } from "~~/interfaces";
-
-const props = defineProps<IPrayerItem>();
+import { PrayerItem } from "!interfaces";
+const props = defineProps<PrayerItem>();
 </script>
 
 <style lang="postcss" scoped>

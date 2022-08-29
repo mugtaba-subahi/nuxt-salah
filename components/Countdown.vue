@@ -1,7 +1,7 @@
 <template>
   <div class="timer">
     <template v-if="!!nextPrayer">
-      <p class="timer__item">{{ nextPrayer.english }} in</p>
+      <p class="timer__item">{{ props.nextPrayer.english }} in</p>
       <p class="timer__item timer--time">{{ timeLeft }}</p>
     </template>
     <template v-else>
@@ -11,11 +11,8 @@
 </template>
 
 <script lang="ts" setup>
-import { IPrayerNullable } from "~~/interfaces";
-
-
-
-const { nextPrayer, timeLeft } = defineProps<ITimerProps>();
+import { CountDown } from "!interfaces";
+const props = defineProps<CountDown>();
 </script>
 
 <style lang="postcss" scoped>
